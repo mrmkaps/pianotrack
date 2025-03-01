@@ -77,7 +77,7 @@
             justify-content: center;
             opacity: 0.3;
         }
-        
+
         .key {
             height: 180px;
             width: 40px;
@@ -85,7 +85,7 @@
             margin: 0 2px;
             border-radius: 0 0 5px 5px;
         }
-        
+
         .black-key {
             height: 100px;
             width: 24px;
@@ -94,7 +94,16 @@
             z-index: 1;
             border-radius: 0 0 5px 5px;
         }
-        
+
+        /* Remove the gap between E and F keys */
+        .key:nth-child(5) {
+            margin-right: -2px;
+        }
+
+        .key:nth-child(6) {
+            margin-left: -2px;
+        }
+
         .piano-animation {
             position: absolute;
             top: 20px;
@@ -102,7 +111,7 @@
             text-align: center;
             opacity: 0.15;
         }
-        
+
         @keyframes notes {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -113,7 +122,7 @@
                 opacity: 0;
             }
         }
-        
+
         .music-note {
             font-size: 2rem;
             display: inline-block;
@@ -121,16 +130,16 @@
             animation: notes 8s linear infinite;
             opacity: 0.5;
         }
-        
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
-            
+
             p {
                 font-size: 1rem;
             }
-            
+
             .piano-keys {
                 transform: scale(0.8);
             }
@@ -138,63 +147,63 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Piano Track</h1>
-        <p>Our app is almost ready!</p>
-        <p>Coming soon. Stay tuned.</p>
-        <div class="contact">
-            <p>Questions? Contact us:</p>
-            <a href="mailto:tizhuq@gmail.com" class="email">tizhuq@gmail.com</a>
-        </div>
+<div class="container">
+    <h1>Piano Track</h1>
+    <p>Our app is almost ready!</p>
+    <p>Coming soon. Stay tuned.</p>
+    <div class="contact">
+        <p>Questions? Contact us:</p>
+        <a href="mailto:tizhuq@gmail.com" class="email">tizhuq@gmail.com</a>
     </div>
-    
-    <div class="piano-keys">
-        <div class="key"></div>
-        <div class="black-key"></div>
-        <div class="key"></div>
-        <div class="black-key"></div>
-        <div class="key"></div>
-        <div class="key"></div>
-        <div class="black-key"></div>
-        <div class="key"></div>
-        <div class="black-key"></div>
-        <div class="key"></div>
-        <div class="black-key"></div>
-        <div class="key"></div>
-    </div>
-    
-    <div class="piano-animation" id="animation-container">
-        <!-- Music notes will be added by JavaScript -->
-    </div>
-    
-    <script>
-        // Adding animated music notes
-        const container = document.getElementById('animation-container');
-        const notes = ['♩', '♪', '♫', '♬', '𝅗𝅥', '𝄞'];
-        const colors = ['#ffffff', '#9370DB', '#cccccc'];
-        
-        function createNote() {
-            const note = document.createElement('span');
-            note.textContent = notes[Math.floor(Math.random() * notes.length)];
-            note.classList.add('music-note');
-            note.style.left = Math.random() * 100 + 'vw';
-            note.style.color = colors[Math.floor(Math.random() * colors.length)];
-            note.style.animationDuration = (5 + Math.random() * 10) + 's';
-            container.appendChild(note);
-            
-            // Remove note after animation ends
-            setTimeout(() => {
-                note.remove();
-            }, 15000);
-        }
-        
-        // Create notes every 500ms
-        setInterval(createNote, 500);
-        
-        // Create initial notes
-        for (let i = 0; i < 10; i++) {
-            setTimeout(createNote, i * 300);
-        }
-    </script>
+</div>
+
+<div class="piano-keys">
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+</div>
+
+<div class="piano-animation" id="animation-container">
+    <!-- Music notes will be added by JavaScript -->
+</div>
+
+<script>
+    // Adding animated music notes
+    const container = document.getElementById('animation-container');
+    const notes = ['♩', '♪', '♫', '♬', '𝅗𝅥', '𝄞'];
+    const colors = ['#ffffff', '#9370DB', '#cccccc'];
+
+    function createNote() {
+        const note = document.createElement('span');
+        note.textContent = notes[Math.floor(Math.random() * notes.length)];
+        note.classList.add('music-note');
+        note.style.left = Math.random() * 100 + 'vw';
+        note.style.color = colors[Math.floor(Math.random() * colors.length)];
+        note.style.animationDuration = (5 + Math.random() * 10) + 's';
+        container.appendChild(note);
+
+        // Remove note after animation ends
+        setTimeout(() => {
+            note.remove();
+        }, 15000);
+    }
+
+    // Create notes every 500ms
+    setInterval(createNote, 500);
+
+    // Create initial notes
+    for (let i = 0; i < 10; i++) {
+        setTimeout(createNote, i * 300);
+    }
+</script>
 </body>
 </html>
