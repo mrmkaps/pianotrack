@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Track - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #9370DB);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+        
+        .contact {
+            margin-top: 3rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .contact p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .email {
+            color: #9370DB;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .email:hover {
+            text-decoration: underline;
+        }
+        
+        .piano-keys {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            opacity: 0.3;
+        }
+
+        .key {
+            height: 180px;
+            width: 40px;
+            background-color: white;
+            margin: 0 2px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .black-key {
+            height: 100px;
+            width: 24px;
+            background-color: black;
+            margin: 0 -14px;
+            z-index: 1;
+            border-radius: 0 0 5px 5px;
+        }
+
+        /* Remove the gap between E and F keys */
+        .key:nth-child(5) {
+            margin-right: -2px;
+        }
+
+        .key:nth-child(6) {
+            margin-left: -2px;
+        }
+
+        .piano-animation {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            opacity: 0.15;
+        }
+
+        @keyframes notes {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .music-note {
+            font-size: 2rem;
+            display: inline-block;
+            position: absolute;
+            animation: notes 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .piano-keys {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Piano Track</h1>
+    <h2>Privacy policy</h2>
+    <br><br>
+    <p>Our app is almost ready!</p>
+    <p>Coming soon. Stay tuned!</p>
+    <div class="contact">
+        <p>Questions? Contact us:</p>
+        <a href="mailto:mrmkaps@gmail.com" class="email">mrmkaps@gmail.com</a>
+    </div>
+</div>
+
+<div class="piano-keys">
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+    <div class="black-key"></div>
+    <div class="key"></div>
+</div>
+
+<div class="piano-animation" id="animation-container">
+    <!-- Music notes will be added by JavaScript -->
+</div>
+
+<script>
+    // Adding animated music notes
+    const container = document.getElementById('animation-container');
+    const notes = ['♩', '♪', '♫', '♬', '𝅗𝅥', '𝄞'];
+    const colors = ['#ffffff', '#9370DB', '#cccccc'];
+
+    function createNote() {
+        const note = document.createElement('span');
+        note.textContent = notes[Math.floor(Math.random() * notes.length)];
+        note.classList.add('music-note');
+        note.style.left = Math.random() * 100 + 'vw';
+        note.style.color = colors[Math.floor(Math.random() * colors.length)];
+        note.style.animationDuration = (5 + Math.random() * 10) + 's';
+        container.appendChild(note);
+
+        // Remove note after animation ends
+        setTimeout(() => {
+            note.remove();
+        }, 15000);
+    }
+
+    // Create notes every 500ms
+    setInterval(createNote, 500);
+
+    // Create initial notes
+    for (let i = 0; i < 10; i++) {
+        setTimeout(createNote, i * 300);
+    }
+</script>
+</body>
+</html>
