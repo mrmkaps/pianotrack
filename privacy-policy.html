@@ -3,209 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piano Track - Coming Soon</title>
+    <title>Privacy Policy - Piano Tracker</title>
     <style>
+        /* Basic styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            z-index: 2;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #ffffff, #9370DB);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            background-color: #f8f9fa; /* Matching index.html background */
+            color: #333;
             line-height: 1.6;
-            color: #cccccc;
         }
-        
-        .contact {
-            margin-top: 3rem;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.1);
+
+        a {
+            text-decoration: none;
+            color: #34a853;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        section {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #34a853;
+            margin: 0; /* Remove default margin */
+            line-height: 1; /* Adjust line height */
+            font-family: 'Montserrat', sans-serif; /* Improved font */
+            font-weight: 600; /* Semi-bold */
+            letter-spacing: -0.5px; /* Tighter letter spacing */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a:hover {
+            color: #2d8e46;
+        }
+
+        .nav-download-btn {
+            background-color: #34a853;
+            color: white !important;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .nav-download-btn:hover {
+            background-color: #2d8e46;
+        }
+
+        /* Privacy Policy */
+        .policy-container {
+            background-color: #fff;
             border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
         }
-        
-        .contact p {
+
+        .policy-section {
+            margin-bottom: 2rem;
+        }
+
+        .policy-section h2 {
+            color: #34a853;
+            margin-top: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .policy-section h3 {
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .policy-section ul, .policy-section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section li {
             margin-bottom: 0.5rem;
         }
-        
-        .email {
-            color: #9370DB;
-            font-weight: bold;
-            text-decoration: none;
+
+        .last-updated {
+            color: #666;
+            margin-bottom: 2rem;
         }
-        
-        .email:hover {
-            text-decoration: underline;
+
+        .policy-title {
+            color: #34a853;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
-        
-        .piano-keys {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            height: 200px;
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-container {
             display: flex;
-            justify-content: center;
-            opacity: 0.3;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .key {
-            height: 180px;
-            width: 40px;
-            background-color: white;
-            margin: 0 2px;
-            border-radius: 0 0 5px 5px;
+        .footer-logo {
+            display: flex;
+            align-items: center;
         }
 
-        .black-key {
-            height: 100px;
-            width: 24px;
-            background-color: black;
-            margin: 0 -14px;
-            z-index: 1;
-            border-radius: 0 0 5px 5px;
+        .footer-text {
+            margin-left: 10px;
+            font-size: 1.1rem;
         }
 
-        /* Remove the gap between E and F keys */
-        .key:nth-child(5) {
-            margin-right: -2px;
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
         }
 
-        .key:nth-child(6) {
-            margin-left: -2px;
+        .footer-links a {
+            color: #ccc;
         }
 
-        .piano-animation {
-            position: absolute;
-            top: 20px;
-            width: 100%;
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
             text-align: center;
-            opacity: 0.15;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
         }
 
-        @keyframes notes {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .music-note {
-            font-size: 2rem;
+        .button {
             display: inline-block;
-            position: absolute;
-            animation: notes 8s linear infinite;
-            opacity: 0.5;
+            background-color: #34a853;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
 
+        .button:hover {
+            background-color: #2d8e46;
+            color: white;
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .nav-container {
+                flex-direction: column;
             }
 
-            p {
-                font-size: 1rem;
+            .nav-links {
+                margin-top: 1rem;
             }
 
-            .piano-keys {
-                transform: scale(0.8);
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 1.5rem;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap">
 </head>
 <body>
-<div class="container">
-    <h1>Piano Track</h1>
-    <h2>Privacy policy</h2>
-    <br><br>
-    <p>Our app is almost ready!</p>
-    <p>Coming soon. Stay tuned!</p>
-    <div class="contact">
-        <p>Questions? Contact us:</p>
-        <a href="mailto:mrmkaps@gmail.com" class="email">mrmkaps@gmail.com</a>
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <img src="logo.png" alt="Piano Tracker Logo">
+            <h1>Piano Tracker</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#why-piano-track">Why Piano Tracker</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#platforms">Platforms</a></li>
+            <li><a href="privacy-policy.html">Privacy</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="#" class="nav-download-btn">Download</a></li>
+        </ul>
     </div>
-</div>
+</nav>
 
-<div class="piano-keys">
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-</div>
+<section>
+    <div class="policy-container">
+        <h1 class="policy-title">Piano Tracker Privacy Policy</h1>
+        <p class="last-updated"><strong>Last Updated: March 1, 2025</strong></p>
 
-<div class="piano-animation" id="animation-container">
-    <!-- Music notes will be added by JavaScript -->
-</div>
+        <div class="policy-section">
+            <h2>Introduction</h2>
+            <p>This Privacy Policy explains how Piano Tracker ("we", "us", "our", "the application") collects, uses, and safeguards information when you use our mobile and desktop application. We value your privacy and are committed to protecting it.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Information Collection and Use</h2>
+
+            <h3>Locally Stored Data</h3>
+            <p>All data generated while using Piano Tracker is stored <strong>exclusively locally</strong> on your device.
+            <p><strong>We do not collect, store, or transmit this data to our servers or any third-party servers.</strong></p>
+
+            <h3>Legal Basis for Processing (GDPR and Similar Regulations)</h3>
+            <p>The data processing in Piano Tracker occurs exclusively on the user's device. No personal data is transmitted to external servers. Therefore, the legal basis for processing is:</p>
+            <ul>
+                <li><strong>Contractual necessity</strong>: Processing is necessary for the performance of our contract with you (providing the functionality of the Piano Tracker application)</li>
+                <li><strong>Legitimate interests</strong>: We have a legitimate interest in providing you with a functional application that tracks your piano practice</li>
+            </ul>
+
+            <h3>Data Export and Import</h3>
+            <p>The application offers data export and import features that allow you to:</p>
+            <ul>
+                <li>Create backups of your practice data in CSV format</li>
+                <li>Import previously exported data</li>
+            </ul>
+            <p>These operations are initiated solely by the user and performed locally on the device. We have no access to exported data unless you choose to share it. This functionality also satisfies your right to data portability under various privacy regulations.</p>
+
+            <h3>Error Reporting</h3>
+            <p>The application may send <strong>anonymous</strong> error reports to Apple through standard iOS/macOS error reporting mechanisms. These reports may include:</p>
+            <ul>
+                <li>Technical information about the device (model, operating system version)</li>
+                <li>Application state data at the time of the error</li>
+                <li>Error logs</li>
+            </ul>
+            <p>These reports do not contain any personal data or information that could identify the user. They are used exclusively for diagnosing and fixing technical issues.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Data Sharing</h2>
+            <p>We do not share any user data with third parties because:</p>
+            <ol>
+                <li>All data is stored exclusively locally on the user's device</li>
+                <li>The application does not collect any personal data</li>
+                <li>We do not use external analytics tools or tracking services</li>
+            </ol>
+        </div>
+
+        <div class="policy-section">
+            <h2>Data Security</h2>
+            <p>Since all data is stored locally on the user's device, the security of this data depends on the safeguards of the device itself. We recommend:</p>
+            <ul>
+                <li>Regularly updating your device's operating system</li>
+                <li>Using device security features (passcode, Face ID, Touch ID)</li>
+                <li>Regularly backing up your data using the export function</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>User Rights</h2>
+            <p>Under various privacy regulations including the EU General Data Protection Regulation (GDPR), Brazil's Lei Geral de Proteção de Dados (LGPD), Japan's Act on Protection of Personal Information (APPI), Singapore's Personal Data Protection Act (PDPA), Israel's Privacy Protection Law, and others, you have certain rights regarding your personal data.</p>
+
+            <p>However, since Piano Tracker processes data exclusively on your device and does not transmit it to external servers, most of these rights are automatically fulfilled:</p>
+            <ul>
+                <li><strong>Right to access</strong>: You have full access to all data through the application interface</li>
+                <li><strong>Right to rectification</strong>: You can edit practice entries through the application interface</li>
+                <li><strong>Right to erasure</strong>: Uninstalling the application will permanently delete all associated data from your device</li>
+                <li><strong>Right to data portability</strong>: You can export all your data in CSV format using the built-in export feature</li>
+                <li><strong>Right to object to processing</strong>: No data is processed beyond your device</li>
+                <li><strong>Right to restriction of processing</strong>: No data is processed beyond your device</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>Data Retention</h2>
+            <p>All data is stored on your device until you choose to delete it or uninstall the application. We do not have access to this data and therefore do not retain it on our servers.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>International Data Transfers</h2>
+            <p>As all data remains on your device, there are no international data transfers performed by Piano Tracker.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Regional Compliance Notes</h2>
+
+            <h3>European Union (GDPR)</h3>
+            <p>Piano Tracker is designed to be compliant with the General Data Protection Regulation. Since all data processing occurs locally on your device and no personal data is transmitted externally, the application naturally fulfills most GDPR requirements.</p>
+
+            <h3>Brazil (LGPD)</h3>
+            <p>Piano Tracker is designed to comply with Brazil's Lei Geral de Proteção de Dados. The local-only data processing approach ensures that your rights under LGPD are protected.</p>
+
+            <h3>Japan (APPI)</h3>
+            <p>Piano Tracker is compliant with Japan's Act on Protection of Personal Information. No personal data is collected or transferred outside your device.</p>
+
+            <h3>Singapore (PDPA)</h3>
+            <p>Piano Tracker complies with Singapore's Personal Data Protection Act. The application's design ensures your personal data remains under your control.</p>
+
+            <h3>Israel (Privacy Protection Law)</h3>
+            <p>Piano Tracker is designed to be compliant with Israel's Privacy Protection Law by ensuring all data remains exclusively on your device.</p>
+
+            <h3>United States, Canada, Australia, and United Kingdom</h3>
+            <p>Piano Tracker complies with applicable privacy laws in these jurisdictions. The application's local-only data approach provides strong privacy protections regardless of jurisdiction.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Application Suitable for All Ages</h2>
+            <p>Piano Tracker is designed to be used by individuals of all ages, including children. Since the application does not collect any personal information and all data is stored locally on the device, it is safe for users of any age to use.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. In the event of significant changes, we will notify you through an application update or publication on our website. The "Last Updated" date at the top of this Privacy Policy will indicate when the most recent revisions were made.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Formatting and Technical Details</h2>
+            <p>Piano Tracker respects local formatting conventions for dates, times, and other regional preferences based on your device settings.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us via:</p>
+            <p>Email: <a href="mailto:mrmkaps@gmail.com">mrmkaps@gmail.com</a></p>
+        </div>
+
+        <div class="policy-section">
+            <p>By using the Piano Tracker application, you agree to the terms of this Privacy Policy.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-container">
+        <div class="footer-logo">
+            <span class="footer-text">Piano Tracker 2025</span>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#why-piano-track">Why Piano Tracker</a>
+            <a href="index.html#platforms">Platforms</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <div>
+            <a href="#" class="button">Download on the App Store</a>
+        </div>
+    </div>
+    <div class="footer-bottom container">
+        <p>&copy; Piano Tracker 2025. All rights reserved.</p>
+    </div>
+</footer>
 
 <script>
-    // Adding animated music notes
-    const container = document.getElementById('animation-container');
-    const notes = ['♩', '♪', '♫', '♬', '𝅗𝅥', '𝄞'];
-    const colors = ['#ffffff', '#9370DB', '#cccccc'];
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
 
-    function createNote() {
-        const note = document.createElement('span');
-        note.textContent = notes[Math.floor(Math.random() * notes.length)];
-        note.classList.add('music-note');
-        note.style.left = Math.random() * 100 + 'vw';
-        note.style.color = colors[Math.floor(Math.random() * colors.length)];
-        note.style.animationDuration = (5 + Math.random() * 10) + 's';
-        container.appendChild(note);
+            if (targetId === '#') return;
 
-        // Remove note after animation ends
-        setTimeout(() => {
-            note.remove();
-        }, 15000);
-    }
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
 
-    // Create notes every 500ms
-    setInterval(createNote, 500);
-
-    // Create initial notes
-    for (let i = 0; i < 10; i++) {
-        setTimeout(createNote, i * 300);
-    }
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 </script>
 </body>
 </html>
