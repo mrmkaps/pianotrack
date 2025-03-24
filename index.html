@@ -3,206 +3,856 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piano Track - Coming Soon</title>
+    <title>Piano Tracker - Piano Practice Helper</title>
     <style>
+        /* Basic styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            z-index: 2;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #ffffff, #9370DB);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            background-color: #f8f9fa; /* More subtle light background */
+            color: #333;
             line-height: 1.6;
-            color: #cccccc;
+            position: relative; /* Added for note animation positioning */
+            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
-        
-        .contact {
-            margin-top: 3rem;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-        }
-        
-        .contact p {
-            margin-bottom: 0.5rem;
-        }
-        
-        .email {
-            color: #9370DB;
-            font-weight: bold;
+
+        a {
             text-decoration: none;
+            color: #34a853;
         }
-        
-        .email:hover {
-            text-decoration: underline;
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #444;
         }
-        
-        .piano-keys {
-            position: absolute;
-            bottom: -50px;
+
+        section {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative; /* For proper layering */
+            z-index: 2; /* Above the notes */
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative; /* For proper layering */
+        }
+
+        .coming-soon-tag {
+    background-color: #ff9800;
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+        /* Note Animation */
+        .piano-animation {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            opacity: 0.3;
-        }
-
-        .key {
-            height: 180px;
-            width: 40px;
-            background-color: white;
-            margin: 0 2px;
-            border-radius: 0 0 5px 5px;
-        }
-
-        .black-key {
-            height: 100px;
-            width: 24px;
-            background-color: black;
-            margin: 0 -14px;
-            z-index: 1;
-            border-radius: 0 0 5px 5px;
-        }
-
-        /* Remove the gap between E and F keys */
-        .key:nth-child(5) {
-            margin-right: -2px;
-        }
-
-        .key:nth-child(6) {
-            margin-left: -2px;
-        }
-
-        .piano-animation {
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            text-align: center;
-            opacity: 0.15;
+            height: 100%;
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 1; /* Between background and content */
         }
 
         @keyframes notes {
             0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
+                transform: translateY(-5vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.08;
+            }
+            80% {
+                opacity: 0.08;
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateY(105vh) rotate(360deg);
                 opacity: 0;
             }
         }
 
         .music-note {
-            font-size: 2rem;
+            font-size: 2.5rem;
             display: inline-block;
             position: absolute;
-            animation: notes 8s linear infinite;
-            opacity: 0.5;
+            animation: notes 20s linear infinite;
+            color: #000000;
+            opacity: 0.08; /* Subtle background elements */
+            z-index: 1;
         }
 
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Above everything */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #34a853;
+            margin: 0; /* Remove default margin */
+            line-height: 1; /* Adjust line height */
+            font-family: 'Montserrat', sans-serif; /* Improved font */
+            font-weight: 600; /* Semi-bold */
+            letter-spacing: -0.5px; /* Tighter letter spacing */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a:hover {
+            color: #2d8e46;
+        }
+
+        .nav-download-btn {
+            background-color: #34a853;
+            color: white !important;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .nav-download-btn:hover {
+            background-color: #2d8e46;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(to bottom, #ffffff, #f0f6f0); /* Subtle gradient background */
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2; /* Above the notes */
+        }
+
+        .hero-logo {
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #34a853;
+            font-family: 'Montserrat', sans-serif; /* Improved font */
+            font-weight: 700; /* Bold */
+            letter-spacing: -0.5px; /* Tighter letter spacing */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #34a853;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 3; /* Above the notes, ensures clickability */
+        }
+
+        .button:hover {
+            background-color: #2d8e46;
+            color: white;
+        }
+
+        /* General sections */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative; /* For proper layering */
+            z-index: 2; /* Above the notes */
+        }
+
+        /* Why Piano Tracker */
+        .why-piano-track {
+            margin-bottom: 3rem;
+        }
+
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .benefit-item i {
+            font-size: 1.8rem;
+            color: #34a853;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Ensure all cards have the same height */
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* For proper layering */
+            z-index: 2; /* Above the notes */
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-top: auto; /* Push image to the bottom */
+            order: 2; /* Change order to display content first */
+            border-top: 1px solid #f0f0f0;
+            padding: 10px; /* Added padding around screenshots */
+            box-shadow: inset 0 5px 5px -5px rgba(0,0,0,0.1); /* Subtle inner shadow */
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+            order: 1; /* Display content before image */
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Allow content to grow */
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #34a853;
+            margin-bottom: 1rem;
+        }
+
+        /* Platforms - Updated section */
+        .platforms-section {
+            background: linear-gradient(to bottom, #f5f9f5, #eaf5ea);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative; /* For proper layering */
+            z-index: 2; /* Above the notes */
+        }
+
+        .platforms-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .platform {
+            text-align: center;
+            flex-basis: 150px;
+            transition: transform 0.3s;
+        }
+
+        .platform:hover {
+            transform: translateY(-5px);
+        }
+
+        .platform i {
+            font-size: 2.5rem;
+            color: #34a853;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Technical features */
+        .tech-features-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tech-feature {
+            text-align: center;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            background: linear-gradient(to bottom, #f8f9fa, #f0f6f0);
+        }
+
+        .tech-feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-feature i {
+            font-size: 2rem;
+            color: #34a853;
+            margin-bottom: 1rem;
+        }
+
+        /* Why Piano Tracker - Side by side layout */
+        .why-piano-track-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .why-piano-track-content {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+
+            .main-screenshot {
+                flex: 1;
+                max-width: 45%;
+            }
+
+            .benefits-wrapper {
+                flex: 1;
+                max-width: 55%;
+            }
+        }
+
+        .main-screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .main-screenshot img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Carousel Styles */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.carousel-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 8px;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-dot.active {
+    background-color: #34a853;
+}
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2; /* Above the notes */
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-text {
+            margin-left: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .nav-container {
+                flex-direction: column;
             }
 
-            p {
-                font-size: 1rem;
+            .nav-links {
+                margin-top: 1rem;
             }
 
-            .piano-keys {
-                transform: scale(0.8);
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .benefits-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .tech-features-container {
+                grid-template-columns: 1fr;
+            }
+
+            .music-note {
+                font-size: 1.8rem; /* Smaller notes on mobile */
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap">
 </head>
 <body>
-<div class="container">
-    <h1>Piano Track</h1>
-    <p>Our app is almost ready!</p>
-    <p>Coming soon. Stay tuned!</p>
-    <div class="contact">
-        <p>Questions? Contact us:</p>
-        <a href="mailto:mrmkaps@gmail.com" class="email">mrmkaps@gmail.com</a>
-    </div>
-</div>
-
-<div class="piano-keys">
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-    <div class="black-key"></div>
-    <div class="key"></div>
-</div>
-
+<!-- Music Note Animation Container -->
 <div class="piano-animation" id="animation-container">
     <!-- Music notes will be added by JavaScript -->
 </div>
 
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <img src="logo.png" alt="Piano Tracker Logo">
+            <h1>Piano Tracker</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#why-piano-track">Why Piano Tracker</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#platforms">Platforms</a></li>
+            <li><a href="privacy-policy.html">Privacy</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://apps.apple.com/us/app/piano-tracker/id6743452075" class="nav-download-btn">Download</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <img src="logo.png" alt="Piano Tracker Logo" class="hero-logo">
+        <h1>Track Your Piano Practice</h1>
+        <p>Make every practice session count with Piano Tracker. This intelligent app tracks your daily practice time, provides detailed statistics, and helps you maintain consistent practice habits on your musical journey.</p>
+        <a href="https://apps.apple.com/us/app/piano-tracker/id6743452075" class="button">Download on the App Store</a>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Available for iPhone, iPad, and Mac</p>
+    </div>
+</section>
+
+<section id="why-piano-track" class="why-piano-track">
+    <div class="container">
+        <h2 class="section-title">Why Piano Tracker?</h2>
+        <div class="card">
+            <p style="text-align: center; font-size: 1.2rem; font-weight: 600;">Regular practice is the key to mastery.</p>
+            <p style="text-align: center; margin-bottom: 2rem;">Whether you're a beginner establishing practice habits or an advanced pianist tracking your development, Piano Tracker provides the tools you need to succeed.</p>
+
+            <div class="why-piano-track-content">
+                <div class="main-screenshot carousel-container">
+                    <div class="carousel-slides">
+                        <img src="screen_1.png" alt="Piano Tracker Screenshot 1" class="carousel-slide active">
+                        <img src="screen_2.png" alt="Piano Tracker Screenshot 2" class="carousel-slide">
+                        <img src="screen_3.png" alt="Piano Tracker Screenshot 3" class="carousel-slide">
+                        <img src="screen_4.png" alt="Piano Tracker Screenshot 4" class="carousel-slide">
+                        <img src="screen_5.png" alt="Piano Tracker Screenshot 5" class="carousel-slide">
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active" data-index="0"></span>
+                        <span class="carousel-dot" data-index="1"></span>
+                        <span class="carousel-dot" data-index="2"></span>
+                        <span class="carousel-dot" data-index="3"></span>
+                        <span class="carousel-dot" data-index="4"></span>
+                    </div>
+                </div>
+
+                <div class="benefits-wrapper">
+                    <div class="benefits-container">
+                        <div class="benefit-item">
+                            <i class="fas fa-trophy"></i>
+                            <div class="benefit-content">
+                                <h3>Stay motivated</h3>
+                                <p>with visible progress tracking</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <div class="benefit-content">
+                                <h3>Build consistency</h3>
+                                <p>through streak monitoring</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="benefit-content">
+                                <h3>Focus on practice</h3>
+                                <p>while app tracks the time for you</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-bolt"></i>
+                            <div class="benefit-content">
+                                <h3>Improve faster</h3>
+                                <p>with data-driven insights</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-tag"></i>
+                            <div class="benefit-content">
+                                <h3>One-time purchase</h3>
+                                <p>no subscriptions or in-app purchases</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-magic"></i>
+                            <div class="benefit-content">
+                                <h3>Simple setup</h3>
+                                <p>connect your piano and start practicing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Intuitive Practice Timer</h3>
+                </div>
+                <img src="screen_1.png" alt="Practice Timer Screenshot">
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Detailed Analytics</h3>
+                </div>
+                <img src="screen_2.png" alt="Statistics Screenshot">
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Performance Metrics</h3>
+                </div>
+                <img src="screen_3.png" alt="Performance Metrics Screenshot">
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Complete Practice History</h3>
+                </div>
+                <img src="screen_4.png" alt="Practice History Screenshot">
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Customizable Settings</h3>
+                </div>
+                <img src="screen_5.png" alt="Settings Screenshot">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="platforms">
+    <div class="container">
+        <h2 class="section-title">Choose Your Practice Setup</h2>
+
+        <div class="platforms-section">
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                Piano Tracker adapts to your musical lifestyle with dedicated versions for each of your Apple devices.
+            </p>
+
+            <div class="platforms-container">
+                <div class="platform">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>iPhone</h3>
+                </div>
+                <div class="platform">
+                    <i class="fas fa-tablet-alt"></i>
+                    <h3>iPad</h3>
+                </div>
+                <div class="platform">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Mac</h3>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 0.9rem; margin-top: 1.5rem; color: #666;">
+                Each version offers the same core features, optimized for that device's screen size and usage context
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="technical">
+    <div class="container">
+        <h2 class="section-title">Technical Features</h2>
+        <div class="tech-features-container">
+            <div class="tech-feature">
+                <i class="fas fa-lock"></i>
+                <h3>Privacy-focused</h3>
+                <p>All data stored locally on your device</p>
+            </div>
+            <div class="tech-feature">
+                <i class="fas fa-plug"></i>
+                <h3>MIDI Connection</h3>
+                <p>Works seamlessly with standard MIDI interfaces</p>
+            </div>
+            <div class="tech-feature">
+                <i class="fas fa-language"></i>
+                <h3>Multiple Languages</h3>
+                <p>Supports English, Polish, German, Spanish, French and Portuguese</p>
+            </div>
+            <div class="tech-feature">
+                <i class="fas fa-download"></i>
+                <h3>Data Management</h3>
+                <p>Backup and restore your practice data easily</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact & Support</h2>
+        <div class="card" style="text-align: center;">
+            <p>Have questions, suggestions, or found a bug? I'd love to hear from you!</p>
+            <p style="font-size: 1.1rem; margin-top: 1rem;">Email: <a href="mailto:mrmkaps@gmail.com">mrmkaps@gmail.com</a></p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-container">
+        <div class="footer-logo">
+            <span class="footer-text">Piano Tracker 2025</span>
+        </div>
+        <div>
+            <a href="https://apps.apple.com/us/app/piano-tracker/id6743452075" class="button">Download on the App Store</a>
+        </div>
+    </div>
+</footer>
+
 <script>
-    // Adding animated music notes
+function setupCarousel() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+
+        currentIndex = index;
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'));
+            showSlide(index);
+        });
+    });
+
+    setInterval(() => {
+        let nextIndex = currentIndex + 1;
+        if (nextIndex >= slides.length) {
+            nextIndex = 0;
+        }
+        showSlide(nextIndex);
+    }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', setupCarousel);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     const container = document.getElementById('animation-container');
-    const notes = ['♩', '♪', '♫', '♬', '𝅗𝅥', '𝄞'];
-    const colors = ['#ffffff', '#9370DB', '#cccccc'];
+    const notes = ['♩', '♪', '♫', '♬', '𝄞'];
 
     function createNote() {
         const note = document.createElement('span');
         note.textContent = notes[Math.floor(Math.random() * notes.length)];
         note.classList.add('music-note');
+
         note.style.left = Math.random() * 100 + 'vw';
-        note.style.color = colors[Math.floor(Math.random() * colors.length)];
-        note.style.animationDuration = (5 + Math.random() * 10) + 's';
+
+        note.style.animationDuration = (15 + Math.random() * 10) + 's';
+
         container.appendChild(note);
 
-        // Remove note after animation ends
         setTimeout(() => {
             note.remove();
-        }, 15000);
+        }, 25000); // Slightly longer than max animation duration
     }
 
-    // Create notes every 500ms
-    setInterval(createNote, 500);
+    setInterval(createNote, 1200);
 
-    // Create initial notes
-    for (let i = 0; i < 10; i++) {
-        setTimeout(createNote, i * 300);
+    for (let i = 0; i < 15; i++) {
+        setTimeout(createNote, i * 500);
     }
 </script>
 </body>
